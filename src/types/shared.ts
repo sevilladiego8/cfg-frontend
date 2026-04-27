@@ -46,6 +46,27 @@ export interface Ticket {
   items?: TicketItem[];
 }
 
+export interface WeeklyTicketSummary {
+  ticket_id: number;
+  ticket_code: string;
+  ticket_date: string;
+  ticket_total: string;
+}
+
+export interface WeeklySupplierSummary {
+  supplier_id: number;
+  supplier_code: string;
+  supplier_name: string;
+  ticket_count: number;
+  total: string;
+  tickets: WeeklyTicketSummary[];
+}
+
+export interface WeeklyPaymentsResponse {
+  data: WeeklySupplierSummary[];
+  meta: { year: number; week: number };
+}
+
 export interface PaginatedMeta {
   total: number;
   page: number;

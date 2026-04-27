@@ -21,6 +21,7 @@ const navItems = [
   { to: '/lands', label: 'Lands', end: false },
   { to: '/products', label: 'Products', end: false },
   { to: '/tickets', label: 'Tickets', end: false },
+  { to: '/payments', label: 'Weekly Payments', end: false },
 ];
 
 export default function AppLayout() {

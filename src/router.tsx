@@ -6,6 +6,7 @@ import Lands from '@/pages/Lands';
 import Products from '@/pages/Products';
 import Suppliers from '@/pages/Suppliers';
 import Tickets from '@/pages/Tickets';
+import WeeklyPayments from '@/pages/WeeklyPayments';
 
 export default function AppRouter() {
   return (
@@ -16,6 +17,7 @@ export default function AppRouter() {
         <Route path="lands" element={<Lands />} />
         <Route path="products" element={<Products />} />
         <Route path="tickets" element={<Tickets />} />
+        <Route path="payments" element={<WeeklyPayments />} />
       </Route>
     </Routes>
   );
