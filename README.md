@@ -1,36 +1,53 @@
-# CFG Tickets Management App
+# CFG Tickets Management — Frontend
 
-This applications allows the management of tickets
+React SPA for managing purchase tickets imported from Excel. Provides full CRUD for suppliers, lands, products, and tickets, with paginated tables and a summary dashboard.
 
 # Tools Used
 
 **Main**
-- REact
-- vite
-- axios
-- tanstack query
-
+- React + Vite
+- Axios
+- TanStack Query
+- React Hook Form + Zod
+- React Router
 
 **Styles**
-- tailwind
-- shadcn/ui
+- Tailwind CSS v4
+- shadcn/ui (base-nova)
 
-# Project structure
+# Project Structure
 
 ```
 src/
-
+├── api/          # Axios API functions per entity
+├── components/   # Reusable UI components (DataTable, ConfirmDialog, etc.)
+├── hooks/        # Custom React hooks
+├── layouts/      # App shell with sidebar navigation
+├── pages/        # One file per route (Dashboard, Suppliers, Lands, Products, Tickets)
+├── types/        # Shared TypeScript interfaces
+└── utils/        # Utility helpers
 ```
 
-# How to run? 
+# How to Run
 
-1. npm run dev
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the dev server:
+   ```bash
+   npm run dev
+   ```
 
-# PUrpose of tools
+The app expects the backend API to be running. See the backend README for setup instructions.
 
-## Shadcn/ui
- Shadcn/ui is a headless component library that can be used to fully customize the component library as per project needs. It has minimalistic styles and gives you the full code of each component so that you can take ownership over each of them.
+# Purpose of Tools
 
-## Tanstack Query
+## TanStack Query
+Handles all server state: fetching, caching, and invalidation after mutations. Avoids manual loading/error state management across components.
 
-Tankstack query allows caching of server requests making it great for production usage
+## React Hook Form + Zod
+Form state and validation. Zod schemas define the shape and constraints; `zodResolver` bridges them to React Hook Form.
+
+## shadcn/ui
+Headless component library where you own the component source. Uses the base-nova style built on `@base-ui/react`. Components live in `src/components/ui/` and can be fully customized.
