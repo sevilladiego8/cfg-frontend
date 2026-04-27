@@ -6,18 +6,11 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { ConfirmDialog } from "@/components/ConfirmDialog";
+import { DataTable } from "@/components/DataTable";
 import { FormDialog } from "@/components/FormDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { suppliersApi } from "@/api/suppliers";
 import type { Supplier } from "@/types/shared";
 
@@ -107,61 +100,26 @@ export default function Suppliers() {
         <Button onClick={openCreate}>Add Supplier</Button>
       </div>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Code</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead className="w-36">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {isLoading ? (
-            <TableRow>
-              <TableCell
-                colSpan={3}
-                className="py-8 text-center text-muted-foreground"
-              >
-                Loading…
-              </TableCell>
-            </TableRow>
-          ) : suppliers.length === 0 ? (
-            <TableRow>
-              <TableCell
-                colSpan={3}
-                className="py-8 text-center text-muted-foreground"
-              >
-                No suppliers found.
-              </TableCell>
-            </TableRow>
-          ) : (
-            suppliers.map((s) => (
-              <TableRow key={s.id}>
-                <TableCell className="font-mono">{s.code}</TableCell>
-                <TableCell>{s.name}</TableCell>
-                <TableCell>
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => openEdit(s)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      onClick={() => setDeleting(s)}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
+      <DataTable
+        data={suppliers}
+        isLoading={isLoading}
+        emptyMessage="No suppliers found."
+        getRowKey={(s) => s.id}
+        columns={[
+          { header: 'Code', accessor: 'code', className: 'font-mono' },
+          { header: 'Name', accessor: 'name' },
+          {
+            header: 'Actions',
+            className: 'w-36',
+            cell: (s) => (
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline" onClick={() => openEdit(s)}>Edit</Button>
+                <Button size="sm" variant="destructive" onClick={() => setDeleting(s)}>Delete</Button>
+              </div>
+            ),
+          },
+        ]}
+      />
 
       <FormDialog
         open={creating || editing !== null}
