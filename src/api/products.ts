@@ -1,3 +1,7 @@
+/**
+ * Products API functions — intended to be used as queryFn / mutationFn
+ * with TanStack Query (useQuery / useMutation) in page components.
+ */
 import type { Product } from '@/types/shared';
 import api from './client';
 

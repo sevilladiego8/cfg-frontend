@@ -1,3 +1,8 @@
+/**
+ * Ticket API functions — intended to be used as queryFn / mutationFn
+ * with TanStack Query (useQuery / useMutation) in page components.
+ * Supports paginated listing with optional supplier_id / land_id filters.
+ */
 import type { PaginatedResponse, Ticket } from '@/types/shared';
 import api from './client';
 

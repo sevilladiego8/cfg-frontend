@@ -1,3 +1,6 @@
+/**
+ * Configured axios instance used by all API modules.
+ */
 import axios from 'axios';
 
 const api = axios.create({

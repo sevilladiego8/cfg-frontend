@@ -1,5 +1,9 @@
-import type { Land } from '@/types/shared';
-import api from './client';
+/**
+ * Lands API functions — intended to be used as queryFn / mutationFn
+ * with TanStack Query (useQuery / useMutation) in page components.
+ */
+import type { Land } from "@/types/shared";
+import api from "./client";
 
 export interface LandInput {
   code: string;
@@ -7,9 +11,9 @@ export interface LandInput {
 }
 
 export const landsApi = {
-  getAll: () => api.get<{ data: Land[] }>('/lands').then((r) => r.data.data),
+  getAll: () => api.get<{ data: Land[] }>("/lands").then((r) => r.data.data),
   create: (data: LandInput) =>
-    api.post<{ data: Land }>('/lands', data).then((r) => r.data.data),
+    api.post<{ data: Land }>("/lands", data).then((r) => r.data.data),
   update: (id: number, data: Partial<LandInput>) =>
     api.put<{ data: Land }>(`/lands/${id}`, data).then((r) => r.data.data),
   remove: (id: number) => api.delete(`/lands/${id}`),

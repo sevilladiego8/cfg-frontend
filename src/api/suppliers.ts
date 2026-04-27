@@ -1,3 +1,7 @@
+/**
+ * Suppliers API functions — intended to be used as queryFn / mutationFn
+ * with TanStack Query (useQuery / useMutation) in page components.
+ */
 import type { Supplier } from '@/types/shared';
 import api from './client';
 
